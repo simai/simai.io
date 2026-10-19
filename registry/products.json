@@ -290,6 +290,26 @@
       }
     },
     {
+      "id": "standard-mirai-graph",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "version": "1.6.0",
+      "title": {
+        "ru": "Mirai Graph",
+        "en": "Mirai Graph"
+      },
+      "summary": {
+        "ru": "Знания проекта в виде графа: требования, зависимости, риски, решения и доказательства, которые проверяют и разработчики, и ИИ-ассистенты.",
+        "en": "Project knowledge as a graph: requirements, dependencies, risks, decisions and evidence that developers and AI assistants can validate."
+      },
+      "repository": "zabarov/mirai-graph",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/zabarov/mirai-graph"
+      }
+    },
+    {
       "id": "standard-sitepack",
       "family": "standards",
       "kind": "standard",
@@ -326,6 +346,25 @@
       "placement": {
         "mode": "external",
         "url": "https://github.com/simai/ui-source/blob/main/contracts/standards/README.md"
+      }
+    },
+    {
+      "id": "standard-tz-template",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "title": {
+        "ru": "Шаблон ТЗ для ИИ",
+        "en": "Specification template for AI"
+      },
+      "summary": {
+        "ru": "Как подготовить техническое задание в связке GPT и Codex: интервью, структура и самодостаточное задание для кода.",
+        "en": "How to write a technical specification with GPT and Codex: the interview, the structure and a self-contained task for code."
+      },
+      "repository": "zabarov/codex-tz-template",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/zabarov/codex-tz-template"
       }
     }
   ]
