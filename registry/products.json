@@ -224,6 +224,25 @@
       }
     },
     {
+      "id": "framework-vscode",
+      "family": "framework",
+      "kind": "tool",
+      "status": "beta",
+      "title": {
+        "ru": "Расширение VS Code",
+        "en": "VS Code extension"
+      },
+      "summary": {
+        "ru": "Подсказки и автодополнение классов, компонентов и смарт-компонентов SIMAI Framework в редакторе.",
+        "en": "Hints and autocomplete for SIMAI Framework classes, components and smart components in the editor."
+      },
+      "repository": "simai/ui-vscode",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/simai/ui-vscode"
+      }
+    },
+    {
       "id": "docara-docs",
       "family": "docara",
       "kind": "docs",
