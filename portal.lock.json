@@ -5,9 +5,9 @@
   "artifacts": [
     {
       "product": "framework-effects",
-      "release": "v1.0.0",
-      "url": "https://github.com/simai/ui-effects/releases/download/v1.0.0/framework-effects-v1.0.0-portal.tar.gz",
-      "sha256": "98843027a395757d5a939888936f5bc45e481a80b420c4436e3d789dc903a29e",
+      "release": "v2.0.0",
+      "url": "https://github.com/simai/ui-effects/releases/download/v2.0.0/framework-effects-v2.0.0-portal.tar.gz",
+      "sha256": "36741c32e95003a176a73f041d910444cb81be5fd918455b7852e20308b31181",
       "base_path": "/ru/framework/effects/"
     }
   ]
