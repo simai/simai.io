@@ -41,6 +41,19 @@
         "ru": "Генератор сайтов документации из Markdown на компонентах SIMAI Framework.",
         "en": "Documentation sites from Markdown, built with SIMAI Framework components."
       }
+    },
+    {
+      "id": "standards",
+      "path": "standards/",
+      "status": "stable",
+      "title": {
+        "ru": "Стандарты",
+        "en": "Standards"
+      },
+      "summary": {
+        "ru": "Открытые стандарты и форматы SIMAI: как проекты описывают знания для ИИ, как объекты следуют правилам, как переносятся данные и как устроены компоненты фреймворка.",
+        "en": "Open SIMAI standards and formats: how projects describe their knowledge for AI, how objects follow rules, how data moves between systems and how framework components are built."
+      }
     }
   ],
   "products": [
@@ -234,6 +247,85 @@
       "placement": {
         "mode": "external",
         "url": "https://github.com/simai/docara"
+      }
+    },
+    {
+      "id": "standard-ai-first",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "version": "1.0",
+      "title": {
+        "ru": "AI First",
+        "en": "AI First"
+      },
+      "summary": {
+        "ru": "Как проект описывает свои знания и возможности, чтобы их находили и читали ИИ-агенты и инструменты.",
+        "en": "How a project describes its knowledge and capabilities so that AI agents and tools can find and read them."
+      },
+      "repository": "zabarov/ai-first",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/zabarov/ai-first/blob/main/spec/1.0/README.md"
+      }
+    },
+    {
+      "id": "standard-contract",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "version": "1.0.0",
+      "title": {
+        "ru": "Standard Contract",
+        "en": "Standard Contract"
+      },
+      "summary": {
+        "ru": "Правила, которые объекты выбирают, наследуют и применяют: закреплённые зависимости и отдельный профиль жизненного цикла.",
+        "en": "The rules objects select, inherit and use, with pinned dependencies and a separate lifecycle profile."
+      },
+      "repository": "zabarov/ai-first",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/zabarov/ai-first/blob/main/standard-contract/1.0/README.md"
+      }
+    },
+    {
+      "id": "standard-sitepack",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "version": "1.2.0",
+      "title": {
+        "ru": "SitePack",
+        "en": "SitePack"
+      },
+      "summary": {
+        "ru": "Открытый формат пакетов структурированных данных и цифровых ресурсов для переноса между системами: спецификация, схемы и валидаторы.",
+        "en": "An open format for packages of structured data and digital assets moving between systems: specification, schemas and validators."
+      },
+      "repository": "simai/sitepack",
+      "placement": {
+        "mode": "external",
+        "url": "https://simai.github.io/sitepack/"
+      }
+    },
+    {
+      "id": "standard-framework",
+      "family": "standards",
+      "kind": "standard",
+      "status": "stable",
+      "title": {
+        "ru": "Стандарты SIMAI Framework",
+        "en": "SIMAI Framework standards"
+      },
+      "summary": {
+        "ru": "Девять стандартов фреймворка: составные компоненты, пакеты компонентов, фрагменты интерфейса, правила взаимодействия, фоновые эффекты, разработка с ИИ и другие.",
+        "en": "Nine framework standards: composite components, component packages, interface fragments, interaction rules, background effects, AI development and more."
+      },
+      "repository": "simai/ui-source",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/simai/ui-source/blob/main/contracts/standards/README.md"
       }
     }
   ]

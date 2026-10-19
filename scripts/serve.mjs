@@ -26,6 +26,6 @@ createServer((request, response) => {
     response.end(readFileSync(join(dist, '404.html')));
     return;
   }
-  response.writeHead(200, {'content-type': TYPES[extname(path)] || 'application/octet-stream'});
+  response.writeHead(200, {'content-type': TYPES[extname(path)] || 'application/octet-stream', 'cache-control': 'no-store'});
   response.end(readFileSync(path));
 }).listen(port, () => console.log(`serve: http://localhost:${port}${base}`));

@@ -12,6 +12,7 @@
   "kind.catalogue": "Каталог",
   "kind.app": "Приложение",
   "kind.repository": "Репозиторий",
+  "kind.standard": "Стандарт",
   "status.stable": "",
   "status.beta": "Бета",
   "status.soon": "Скоро",

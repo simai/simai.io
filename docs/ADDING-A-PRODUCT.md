@@ -1,7 +1,10 @@
 # Adding a product or a family
 
 1. Add an entry to `registry/products.json`:
-   - `id`, `family` and `kind` (`docs`, `catalogue`, `app` or `repository`);
+   - `id`, `family` and `kind` (`docs`, `catalogue`, `app`, `repository` or
+     `standard`);
+   - `version`, optional: the released version the card shows, for a
+     standard or a format;
    - `status`: `soon` until there is a public address;
    - `title` and `summary` in every live locale;
    - `repository`: `owner/name` when the repository is public, else `null`;

@@ -49,7 +49,13 @@ function render(source, values, dictionary) {
   return page;
 }
 
-const host = (url) => new URL(url).host + (new URL(url).pathname === '/' ? '' : new URL(url).pathname.replace(/\/$/u, ''));
+// The address a card shows: the host and path, but on GitHub only
+// owner/repository, not the file inside it.
+const host = (url) => {
+  const {host: name, pathname} = new URL(url);
+  const path = name === 'github.com' ? pathname.split('/').slice(0, 3).join('/') : pathname;
+  return name + (path === '/' ? '' : path.replace(/\/$/u, ''));
+};
 const live = liveLocales(data);
 const robots = indexed ? '' : '<meta name="robots" content="noindex">\n';
 const logo = readFileSync(join(ROOT, 'site', 'partials', 'logo.svg'), 'utf8');
@@ -82,6 +88,7 @@ function card(product, locale, root, dictionary) {
   const title = escape(product.title[locale]);
   const status = dictionary[`status.${product.status}`];
   const meta = [`<span>${escape(dictionary[`kind.${product.kind}`])}</span>`];
+  if (product.version) meta.push(`<span class="badge badge--plain">${escape(product.version)}</span>`);
   if (status) meta.push(`<span class="badge">${escape(status)}</span>`);
   if (language) meta.push(`<span class="badge badge--plain" lang="${locale}">${escape(dictionary['product.in_language'])}</span>`);
   const external = href && /^https:/u.test(href);
