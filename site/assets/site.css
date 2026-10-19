@@ -110,37 +110,6 @@ h3 { font-size: 1.0625rem; line-height: 1.4; font-weight: 700; }
 }
 .lang__option:hover { background: var(--sf-surface-container-hover); }
 
-/* Segmented group: theme and language */
-.seg {
-  display: inline-flex;
-  gap: var(--space-1);
-  padding: var(--space-1);
-  border-radius: var(--radius-m);
-  background: var(--sf-surface-container);
-}
-.seg__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-block-size: 2rem;
-  padding-inline: var(--space-3);
-  border: 0;
-  border-radius: var(--radius-s);
-  background: transparent;
-  color: var(--sf-on-surface);
-  font: inherit;
-  font-size: 0.875rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-.seg__btn:hover { background: var(--sf-surface-container-hover); }
-.seg__btn[aria-pressed="true"], .seg__btn[aria-current="true"] { background: var(--sf-surface-0); color: var(--sf-primary); }
-.seg__btn svg { inline-size: 1rem; block-size: 1rem; }
-.seg--icon .seg__btn span {
-  position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
-}
-.seg--icon .seg__btn { padding-inline: var(--space-2); }
-
 /* Intro */
 .intro { padding-block: var(--space-12) var(--space-8); }
 .intro__body { display: grid; gap: var(--space-4); }

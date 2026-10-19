@@ -22,11 +22,11 @@ product site replace their own header and footer with it.
   globe `sf-icon-button` that opens the list of languages, shaped like
   Docara's; the current one has a check. Switching keeps the section
   (`#hash`).
-- **Theme switch:** system, light or dark. These are Framework
-  `.sf-theme-button` controls with `data-theme`, and the Loader owns the
-  preference (`SF.Loader.setTheme`) and keeps it per reader. The look
-  becomes the segmented `<sf-button-group>` (simai/ui-source#4) once it
-  ships in a pair.
+- **Theme switch:** the Framework's
+  `<sf-button-group appearance="segmented" theme-switch>`, which offers
+  system, light and dark. It shows `SF.Loader.themePreference`, calls
+  `SF.Loader.setTheme` on a choice and labels itself in the page
+  language.
 - **Background:** the home hero places a catalogue effect with
   `data-sf-effect` (`content/<locale>/pages.json` → `home.effect`). The
   catalogue commit is pinned in `framework.lock.json`.
