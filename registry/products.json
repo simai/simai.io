@@ -383,7 +383,7 @@
       "family": "tools",
       "kind": "tool",
       "status": "stable",
-      "version": "1.15.0",
+      "version": "1.16.2",
       "title": {
         "ru": "simai-env",
         "en": "simai-env"
