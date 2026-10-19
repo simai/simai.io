@@ -71,9 +71,8 @@
       },
       "repository": "simai/ui-effects",
       "placement": {
-        "mode": "external",
-        "url": "https://simai.github.io/ui-effects/",
-        "planned": "{locale}/framework/effects/"
+        "mode": "assembled",
+        "path": "{locale}/framework/effects/"
       }
     },
     {
