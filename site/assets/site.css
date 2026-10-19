@@ -80,7 +80,8 @@ h3 { font-size: 1.0625rem; line-height: 1.4; font-weight: 700; }
 }
 
 /* The language menu: a globe button and its list, shaped like Docara's. */
-.lang { position: relative; }
+/* flex: a block details adds a line box that put the button 1px low. */
+.lang { position: relative; display: flex; }
 /* A summary is display: list-item by default, which sizes it by its line
    box (36px at size 1/2); inline-flex gives the icon button its own 32px. */
 .lang > summary { display: inline-flex; list-style: none; }
