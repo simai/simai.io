@@ -86,8 +86,7 @@
       "repository": "simai/ui-doc",
       "placement": {
         "mode": "external",
-        "url": "https://simai.github.io/ui-doc/",
-        "planned": "{locale}/framework/docs/"
+        "url": "https://ui.simai.io/"
       }
     },
     {
