@@ -1,0 +1,11 @@
+{
+  "schema": "simai.io.framework-lock",
+  "version": 1,
+  "note": "The Framework release the portal shell is served against. Pages load ui from jsDelivr at ui.commit. A repin changes this file only; take the pair from the release contract, never from a branch head.",
+  "pair": "ui-e7701fef3733",
+  "ui": {
+    "repository": "simai/ui",
+    "commit": "e7701fef37337c73a558b29f33f8f66ffcb4b93c"
+  },
+  "cdn": "https://cdn.jsdelivr.net/gh/simai/ui@{commit}/distr/"
+}

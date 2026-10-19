@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="color-scheme" content="light dark">
+{{ROBOTS}}<title>{{TITLE}}</title>
+<link rel="canonical" href="{{CANONICAL}}">
+<script>
+  // The site theme before the first paint: the reader's choice, else the system.
+  (function () {
+    var theme = null;
+    try { theme = localStorage.getItem('simai-io-theme'); } catch (error) { theme = null; }
+    if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.classList.add('theme-' + theme);
+  })();
+</script>
+<link rel="stylesheet" href="{{FRAMEWORK_BASE}}core/css/core.min.css">
+<script>
+  window.sfPath = '{{FRAMEWORK_BASE}}';
+  // The portal chooses the theme itself (the switch in the header); no preloader.
+  window.SF_BOOT_CONFIG = {theme: false, preloader: {enabled: false}};
+</script>
+<script src="{{FRAMEWORK_BASE}}core/js/core.min.js"></script>
+<link rel="stylesheet" href="{{ROOT}}assets/site.css">
+<link rel="icon" href="{{ROOT}}assets/icon.svg" type="image/svg+xml">

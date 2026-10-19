@@ -1,0 +1,125 @@
+{
+  "$schema": "../schemas/registry.schema.json",
+  "schema": "simai.io.registry",
+  "version": 1,
+  "default_locale": "ru",
+  "locales": [
+    { "id": "ru", "label": "Русский", "status": "live" },
+    { "id": "en", "label": "English", "status": "planned" }
+  ],
+  "families": [
+    {
+      "id": "framework",
+      "path": "framework/",
+      "status": "stable",
+      "title": { "ru": "Simai Framework" },
+      "summary": { "ru": "Фронтенд-фреймворк: ядро, утилиты, компоненты и смарт-компоненты для сайтов и интерфейсов." }
+    },
+    {
+      "id": "docara",
+      "path": "docara/",
+      "status": "stable",
+      "title": { "ru": "Docara" },
+      "summary": { "ru": "Генератор сайтов документации из Markdown на компонентах Simai Framework." }
+    },
+    {
+      "id": "larena",
+      "path": "larena/",
+      "status": "soon",
+      "title": { "ru": "Larena" },
+      "summary": { "ru": "CMS на Laravel с модульной админкой, установщиком и обновлениями." }
+    }
+  ],
+  "products": [
+    {
+      "id": "framework-docs",
+      "family": "framework",
+      "kind": "docs",
+      "status": "stable",
+      "title": { "ru": "Документация" },
+      "summary": { "ru": "Руководство и справочник: утилиты, компоненты, раскладки, темы." },
+      "repository": "simai/ui-doc",
+      "placement": { "mode": "external", "url": "https://simai.github.io/ui-doc/", "planned": "{locale}/framework/docs/" }
+    },
+    {
+      "id": "framework-effects",
+      "family": "framework",
+      "kind": "catalogue",
+      "status": "beta",
+      "title": { "ru": "Фоновые эффекты" },
+      "summary": { "ru": "Каталог анимированных фонов с живым примером, настройками и кодом подключения." },
+      "repository": "simai/ui-effects",
+      "placement": { "mode": "external", "url": "https://simai.github.io/ui-effects/", "planned": "{locale}/framework/effects/" }
+    },
+    {
+      "id": "framework-playground",
+      "family": "framework",
+      "kind": "app",
+      "status": "beta",
+      "title": { "ru": "Плейграунд" },
+      "summary": { "ru": "Интерактивная песочница: компоненты, состояния и темы в браузере." },
+      "repository": null,
+      "placement": { "mode": "subdomain", "url": "https://play.simai.io/" }
+    },
+    {
+      "id": "framework-studio",
+      "family": "framework",
+      "kind": "app",
+      "status": "soon",
+      "title": { "ru": "Студия смарт-процессов" },
+      "summary": { "ru": "Сборка и проверка смарт-компонентов и процессов без кода." },
+      "repository": null,
+      "placement": { "mode": "none", "planned": "https://studio.simai.io/" }
+    },
+    {
+      "id": "framework-themes",
+      "family": "framework",
+      "kind": "app",
+      "status": "soon",
+      "title": { "ru": "Настройка тем" },
+      "summary": { "ru": "Редактор цветовых схем, шрифтов и размеров с экспортом темы." },
+      "repository": null,
+      "placement": { "mode": "none", "planned": "https://themes.simai.io/" }
+    },
+    {
+      "id": "framework-admin",
+      "family": "framework",
+      "kind": "app",
+      "status": "soon",
+      "title": { "ru": "Админка" },
+      "summary": { "ru": "Эталонный интерфейс администрирования на Simai Framework." },
+      "repository": null,
+      "placement": { "mode": "none", "planned": "https://admin.simai.io/" }
+    },
+    {
+      "id": "framework-source",
+      "family": "framework",
+      "kind": "repository",
+      "status": "stable",
+      "title": { "ru": "Исходный код" },
+      "summary": { "ru": "Открытый исходный код фреймворка на GitHub." },
+      "repository": "simai/ui-source",
+      "placement": { "mode": "external", "url": "https://github.com/simai/ui-source" }
+    },
+    {
+      "id": "docara-docs",
+      "family": "docara",
+      "kind": "docs",
+      "status": "stable",
+      "title": { "ru": "Документация Docara" },
+      "summary": { "ru": "Установка, структура сайта, навигация, локали, компоненты и публикация." },
+      "repository": "simai/docara",
+      "placement": { "mode": "external", "url": "https://simai.github.io/docara/", "planned": "{locale}/docara/docs/" }
+    },
+    {
+      "id": "docara-source",
+      "family": "docara",
+      "kind": "repository",
+      "status": "stable",
+      "title": { "ru": "Исходный код" },
+      "summary": { "ru": "Docara на GitHub: релизы, задачи и история изменений." },
+      "repository": "simai/docara",
+      "placement": { "mode": "external", "url": "https://github.com/simai/docara" }
+    }
+  ]
+}

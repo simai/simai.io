@@ -1,0 +1,32 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The gate: registry and content, a fresh build for production and for the
+# Pages preview, every page and link, hygiene. pages.yml deploys only after
+# this workflow passes on main.
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20.19.5"
+      - run: npm ci --no-audit --no-fund
+      - name: Registry, build and pages for https://simai.io/, with every external link
+        run: node scripts/check.mjs --online
+      - name: Registry, build and pages for the Pages preview
+        run: node scripts/check.mjs
+        env:
+          SITE_URL: https://simai.github.io/simai.io/
+      - name: No local paths, no secret-shaped strings
+        run: node scripts/check-hygiene.mjs

@@ -1,0 +1,7 @@
+simai.io portal (simai/simai.io)
+Copyright 2026 Rim Zabarov and contributors
+
+This product is licensed under the Apache License, Version 2.0 (LICENSE).
+It contains no third-party code. The pages load Simai Framework from jsDelivr
+at the commit of framework.lock.json. The build uses Ajv (MIT) to validate
+the registry.
