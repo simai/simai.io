@@ -1,0 +1,6 @@
+{
+  "schema": "simai.io.portal-lock",
+  "version": 1,
+  "note": "Portal artifacts the build unpacks under their paths (docs/ASSEMBLY.md). Take release, url and sha256 from the product receipt; the registry placement becomes assembled in the same change.",
+  "artifacts": []
+}

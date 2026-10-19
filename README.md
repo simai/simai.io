@@ -11,8 +11,7 @@ the products that follow. This repository is the **hub**. It holds:
 It implements no product. Each product keeps its own repository, release
 cycle and owner.
 
-- Preview: https://simai.github.io/simai.io/ (not indexed)
-- Production: https://simai.io/ (after the domain switch)
+- Site: https://simai.io/ (GitHub Pages; https://simai.github.io/simai.io/ redirects there)
 
 ## How it is organized
 
@@ -21,9 +20,10 @@ cycle and owner.
 | `registry/products.json` | Every product family and product, their status and where each one lives. Validated by `schemas/registry.schema.json`. |
 | `content/<locale>/` | Page text (`pages.json`) and interface strings (`strings.json`) per locale. Russian is live; English is planned. |
 | `site/` | Page templates, the placeholder shell (header and footer) and assets. |
+| `portal.lock.json` | The product releases assembled under portal paths ([assembly](docs/ASSEMBLY.md)). |
 | `framework.lock.json` | The Simai Framework pair the pages load, from jsDelivr by full commit. |
 | `scripts/` | `build.mjs` (the site), `check.mjs` (the gate), `check-hygiene.mjs`, `serve.mjs` (a local look). |
-| `docs/` | [Architecture](docs/ARCHITECTURE.md), [shell contract](docs/SHELL.md), [adding a product](docs/ADDING-A-PRODUCT.md). |
+| `docs/` | [Architecture](docs/ARCHITECTURE.md), [shell contract](docs/SHELL.md), [adding a product](docs/ADDING-A-PRODUCT.md), [portal artifacts](docs/ASSEMBLY.md). |
 
 Addresses:
 

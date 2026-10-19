@@ -13,6 +13,7 @@ import {execFileSync} from 'node:child_process';
 import {copyFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {join, resolve} from 'node:path';
 import {ROOT, checkRegistry, frameworkBase, liveLocales, lock, pages, registry, strings} from './lib/registry.mjs';
+import {assemble} from './lib/assemble.mjs';
 
 const PRODUCTION = 'https://simai.io/';
 const YANDEX_VERIFICATION = 'f30b3d3c78686437';
@@ -181,6 +182,13 @@ writeFileSync(join(out, '404.html'), render(template('notfound'), {
 }, entryStrings));
 
 cpSync(join(ROOT, 'site', 'assets'), join(out, 'assets'), {recursive: true});
+
+// Products assembled from their portal artifacts (docs/ASSEMBLY.md).
+const assembled = await assemble(out, data);
+for (const item of assembled) {
+  sitemap.push(item.base_path.slice(1));
+  console.log(`build: ${item.product} ${item.release} -> ${item.base_path} (${item.files} files)`);
+}
 const published = {...data};
 delete published.$schema;
 writeFileSync(join(out, 'registry.json'), `${JSON.stringify(published, null, 2)}\n`);
