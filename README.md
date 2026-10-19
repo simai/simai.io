@@ -30,9 +30,10 @@ Addresses:
 - The portal is one page per locale, `/ru/` and `/en/`; the menu jumps to
   a family's section (`/ru/#framework`). `/ru/framework/` and the other
   family paths of the first build send the reader to that section.
-- Products assembled into the portal live under their family's path,
-  language first: `/ru/framework/effects/`. A locale without its own
-  artifact links to the default locale's, marked with its language.
+- Every product site keeps its own GitHub Pages and a flat third-level
+  domain: `ui.simai.io` (SIMAI Framework docs), `docara.simai.io`,
+  `effects.simai.io`, `sitepack.simai.io`; applications such as
+  `play.simai.io` too. simai.io links to them.
 - Interactive applications live on their own subdomains, for example
   `play.simai.io`.
 

@@ -2,13 +2,5 @@
   "schema": "simai.io.portal-lock",
   "version": 1,
   "note": "Portal artifacts the build unpacks under their paths (docs/ASSEMBLY.md). Take release, url and sha256 from the product receipt; the registry placement becomes assembled in the same change.",
-  "artifacts": [
-    {
-      "product": "framework-effects",
-      "release": "v2.0.0",
-      "url": "https://github.com/simai/ui-effects/releases/download/v2.0.0/framework-effects-v2.0.0-portal.tar.gz",
-      "sha256": "36741c32e95003a176a73f041d910444cb81be5fd918455b7852e20308b31181",
-      "base_path": "/ru/framework/effects/"
-    }
-  ]
+  "artifacts": []
 }

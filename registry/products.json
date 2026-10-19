@@ -92,8 +92,8 @@
       },
       "repository": "simai/ui-effects",
       "placement": {
-        "mode": "assembled",
-        "path": "{locale}/framework/effects/"
+        "mode": "external",
+        "url": "https://effects.simai.io/"
       }
     },
     {

@@ -20,8 +20,12 @@ The hub never publishes a product version that the product has not released.
 | Kind | Where | Example |
 |---|---|---|
 | Home: one page, a section per family | apex, language first | `simai.io/ru/#framework` |
-| Docs and catalogues | apex, under the family | `simai.io/ru/framework/docs/` |
-| Applications | own subdomain | `play.simai.io` |
+| Product sites: docs, catalogues, standards | own flat third-level domain | `ui.simai.io`, `effects.simai.io` |
+| Applications | own flat third-level domain | `play.simai.io` |
+
+Owner decision of 2026-10-19: each site keeps its own GitHub Pages and gets
+a flat third-level domain (no fourth level); simai.io is the navigator. The
+assembly from portal artifacts below stays available but holds nothing.
 
 - Slugs are English. Adding a locale adds a prefix (`/en/`) and never changes
   an existing address.
