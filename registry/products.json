@@ -21,8 +21,8 @@
       "path": "framework/",
       "status": "stable",
       "title": {
-        "ru": "Framework",
-        "en": "Framework"
+        "ru": "SIMAI Framework",
+        "en": "SIMAI Framework"
       },
       "summary": {
         "ru": "Фронтенд-фреймворк SIMAI: ядро, утилиты, компоненты и смарт-компоненты для сайтов и интерфейсов.",
@@ -176,6 +176,25 @@
       "placement": {
         "mode": "external",
         "url": "https://github.com/simai/ui-source"
+      }
+    },
+    {
+      "id": "framework-builder",
+      "family": "framework",
+      "kind": "repository",
+      "status": "stable",
+      "title": {
+        "ru": "Сборщик",
+        "en": "Builder"
+      },
+      "summary": {
+        "ru": "Воспроизводимая сборка ядра, утилит, компонентов и смарт-компонентов из исходного кода.",
+        "en": "The reproducible build of the core, utilities, components and smart components from source."
+      },
+      "repository": "simai/ui-builder",
+      "placement": {
+        "mode": "external",
+        "url": "https://github.com/simai/ui-builder"
       }
     },
     {
