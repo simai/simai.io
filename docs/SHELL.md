@@ -19,9 +19,14 @@ product site replace their own header and footer with it.
   current family marked (`aria-current="page"`).
 - **Language switch:** shown only when more than one locale is live. Each
   link keeps the current path under the other locale prefix.
-- **Theme switch:** light or dark, kept per reader. When the reader has not
-  chosen, the shell follows the system. The class `.theme-light` or
-  `.theme-dark` is set on `<html>` before the first paint.
+- **Theme switch:** system, light or dark. These are Framework
+  `.sf-theme-button` controls with `data-theme`, and the Loader owns the
+  preference (`SF.Loader.setTheme`) and keeps it per reader. The look
+  becomes the segmented `<sf-button-group>` (simai/ui-source#4) once it
+  ships in a pair.
+- **Background:** the home hero places a catalogue effect with
+  `data-sf-effect` (`content/<locale>/pages.json` → `home.effect`). The
+  catalogue commit is pinned in `framework.lock.json`.
 - **Search:** comes in phase 3 with the merged index.
 - **Footer:** the families, a link to the portal source, the build and the
   Framework pair.

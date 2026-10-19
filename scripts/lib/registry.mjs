@@ -12,6 +12,7 @@ export const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'));
 export const registry = () => readJson(join(ROOT, 'registry', 'products.json'));
 export const lock = () => readJson(join(ROOT, 'framework.lock.json'));
 export const frameworkBase = (framework = lock()) => framework.cdn.replace('{commit}', framework.ui.commit);
+export const effectsBase = (framework = lock()) => framework.effects.cdn.replace('{commit}', framework.effects.commit);
 export const liveLocales = (data) => data.locales.filter((locale) => locale.status === 'live').map((locale) => locale.id);
 export const strings = (locale) => readJson(join(ROOT, 'content', locale, 'strings.json'));
 export const pages = (locale) => readJson(join(ROOT, 'content', locale, 'pages.json'));

@@ -12,7 +12,7 @@
 import {execFileSync} from 'node:child_process';
 import {copyFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {join, resolve} from 'node:path';
-import {ROOT, checkRegistry, frameworkBase, liveLocales, lock, pages, registry, strings} from './lib/registry.mjs';
+import {ROOT, checkRegistry, effectsBase, frameworkBase, liveLocales, lock, pages, registry, strings} from './lib/registry.mjs';
 import {assemble} from './lib/assemble.mjs';
 
 const PRODUCTION = 'https://simai.io/';
@@ -109,6 +109,7 @@ const common = (locale, root, home, current, path, dictionary, canonicalPath) =>
   ROBOTS: indexed ? '' : '<meta name="robots" content="noindex">\n',
   CANONICAL: escape(siteUrl + canonicalPath),
   FRAMEWORK_BASE: frameworkBase(framework),
+  EFFECTS_BASE: effectsBase(framework),
   PAIR: framework.pair,
   COMMIT_SHORT: commit.slice(0, 12),
 });
@@ -141,6 +142,7 @@ for (const locale of liveLocales(data)) {
     DESCRIPTION: escape(content.home.description),
     HEADING: escape(content.home.heading),
     LEAD: escape(content.home.lead),
+    EFFECT: escape(content.home.effect),
     FAMILIES: families,
   }, dictionary));
   sitemap.push(`${locale}/`);

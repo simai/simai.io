@@ -1,11 +1,17 @@
 {
   "schema": "simai.io.framework-lock",
   "version": 1,
-  "note": "The Framework release the portal shell is served against. Pages load ui from jsDelivr at ui.commit. A repin changes this file only; take the pair from the release contract, never from a branch head.",
-  "pair": "ui-e7701fef3733",
+  "note": "The Framework release the portal shell is served against, and the effects catalogue its pages place backgrounds from. Pages load ui from jsDelivr at ui.commit and the catalogue at effects.commit; SF.Effects checks every effect file against the catalogue's SHA-256. A repin changes this file only; take the pair from the release contract (contracts/releases/<pair>.lock.json in simai/ui), never from a branch head, and a catalogue commit that its Pages deployed.",
+  "pair": "ui-08c07b3e938a",
   "ui": {
     "repository": "simai/ui",
-    "commit": "e7701fef37337c73a558b29f33f8f66ffcb4b93c"
+    "commit": "08c07b3e938a0eb4bd9204b187c267b2cb4ba5b7"
   },
-  "cdn": "https://cdn.jsdelivr.net/gh/simai/ui@{commit}/distr/"
+  "cdn": "https://cdn.jsdelivr.net/gh/simai/ui@{commit}/distr/",
+  "effects": {
+    "repository": "simai/ui-effects",
+    "commit": "1f62a205c3b3e7372f46bdbb1122454b963f3e1c",
+    "standard": "simai.effect 1.1.0",
+    "cdn": "https://cdn.jsdelivr.net/gh/simai/ui-effects@{commit}/"
+  }
 }
