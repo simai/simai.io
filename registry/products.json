@@ -12,7 +12,7 @@
     {
       "id": "en",
       "label": "English",
-      "status": "planned"
+      "status": "live"
     }
   ],
   "families": [
@@ -21,10 +21,12 @@
       "path": "framework/",
       "status": "stable",
       "title": {
-        "ru": "Simai Framework"
+        "ru": "Framework",
+        "en": "Framework"
       },
       "summary": {
-        "ru": "Фронтенд-фреймворк: ядро, утилиты, компоненты и смарт-компоненты для сайтов и интерфейсов."
+        "ru": "Фронтенд-фреймворк SIMAI: ядро, утилиты, компоненты и смарт-компоненты для сайтов и интерфейсов.",
+        "en": "The SIMAI front-end framework: core, utilities, components and smart components for sites and interfaces."
       }
     },
     {
@@ -32,10 +34,12 @@
       "path": "docara/",
       "status": "stable",
       "title": {
-        "ru": "Docara"
+        "ru": "Docara",
+        "en": "Docara"
       },
       "summary": {
-        "ru": "Генератор сайтов документации из Markdown на компонентах Simai Framework."
+        "ru": "Генератор сайтов документации из Markdown на компонентах SIMAI Framework.",
+        "en": "Documentation sites from Markdown, built with SIMAI Framework components."
       }
     }
   ],
@@ -46,10 +50,12 @@
       "kind": "docs",
       "status": "stable",
       "title": {
-        "ru": "Документация"
+        "ru": "Документация",
+        "en": "Documentation"
       },
       "summary": {
-        "ru": "Руководство и справочник: утилиты, компоненты, раскладки, темы."
+        "ru": "Руководство и справочник: утилиты, компоненты, раскладки, темы.",
+        "en": "Guide and reference: utilities, components, layouts, themes."
       },
       "repository": "simai/ui-doc",
       "placement": {
@@ -64,10 +70,12 @@
       "kind": "catalogue",
       "status": "beta",
       "title": {
-        "ru": "Фоновые эффекты"
+        "ru": "Фоновые эффекты",
+        "en": "Background effects"
       },
       "summary": {
-        "ru": "Каталог анимированных фонов с живым примером, настройками и кодом подключения."
+        "ru": "Каталог анимированных фонов с живым примером, настройками и кодом подключения.",
+        "en": "A catalogue of animated backgrounds with a live preview, settings and embed code."
       },
       "repository": "simai/ui-effects",
       "placement": {
@@ -81,10 +89,12 @@
       "kind": "app",
       "status": "beta",
       "title": {
-        "ru": "Плейграунд"
+        "ru": "Плейграунд",
+        "en": "Playground"
       },
       "summary": {
-        "ru": "Интерактивная песочница: компоненты, состояния и темы в браузере."
+        "ru": "Интерактивная песочница: компоненты, состояния и темы в браузере.",
+        "en": "An interactive sandbox: components, states and themes in the browser."
       },
       "repository": null,
       "placement": {
@@ -98,10 +108,12 @@
       "kind": "app",
       "status": "soon",
       "title": {
-        "ru": "Студия смарт-процессов"
+        "ru": "Студия смарт-процессов",
+        "en": "Smart process studio"
       },
       "summary": {
-        "ru": "Сборка и проверка смарт-компонентов и процессов без кода."
+        "ru": "Сборка и проверка смарт-компонентов и процессов без кода.",
+        "en": "Build and check smart components and processes without code."
       },
       "repository": null,
       "placement": {
@@ -115,10 +127,12 @@
       "kind": "app",
       "status": "soon",
       "title": {
-        "ru": "Настройка тем"
+        "ru": "Настройка тем",
+        "en": "Theme editor"
       },
       "summary": {
-        "ru": "Редактор цветовых схем, шрифтов и размеров с экспортом темы."
+        "ru": "Редактор цветовых схем, шрифтов и размеров с экспортом темы.",
+        "en": "Edit colour schemes, fonts and sizes, and export the theme."
       },
       "repository": null,
       "placement": {
@@ -132,10 +146,12 @@
       "kind": "app",
       "status": "soon",
       "title": {
-        "ru": "Админка"
+        "ru": "Админка",
+        "en": "Admin"
       },
       "summary": {
-        "ru": "Эталонный интерфейс администрирования на Simai Framework."
+        "ru": "Эталонный интерфейс администрирования на SIMAI Framework.",
+        "en": "The reference administration interface built with SIMAI Framework."
       },
       "repository": null,
       "placement": {
@@ -149,10 +165,12 @@
       "kind": "repository",
       "status": "stable",
       "title": {
-        "ru": "Исходный код"
+        "ru": "Исходный код",
+        "en": "Source code"
       },
       "summary": {
-        "ru": "Открытый исходный код фреймворка на GitHub."
+        "ru": "Открытый исходный код фреймворка на GitHub.",
+        "en": "The framework's open source code on GitHub."
       },
       "repository": "simai/ui-source",
       "placement": {
@@ -166,10 +184,12 @@
       "kind": "docs",
       "status": "stable",
       "title": {
-        "ru": "Документация Docara"
+        "ru": "Документация Docara",
+        "en": "Docara documentation"
       },
       "summary": {
-        "ru": "Установка, структура сайта, навигация, локали, компоненты и публикация."
+        "ru": "Установка, структура сайта, навигация, локали, компоненты и публикация.",
+        "en": "Installation, site structure, navigation, locales, components and publishing."
       },
       "repository": "simai/docara",
       "placement": {
@@ -184,10 +204,12 @@
       "kind": "repository",
       "status": "stable",
       "title": {
-        "ru": "Исходный код"
+        "ru": "Исходный код",
+        "en": "Source code"
       },
       "summary": {
-        "ru": "Docara на GitHub: релизы, задачи и история изменений."
+        "ru": "Docara на GitHub: релизы, задачи и история изменений.",
+        "en": "Docara on GitHub: releases, issues and the change history."
       },
       "repository": "simai/docara",
       "placement": {

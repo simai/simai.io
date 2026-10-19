@@ -72,9 +72,9 @@ export function checkRegistry(data = registry()) {
     const own = Object.keys(strings(locale)).sort();
     for (const key of base) if (!own.includes(key)) problems.push(`content/${locale}/strings.json: no ${key}`);
     for (const key of own) if (!base.includes(key)) problems.push(`content/${locale}/strings.json: ${key} is not in ${data.default_locale}`);
-    const content = pages(locale);
-    for (const family of data.families) if (!content.families?.[family.id]) problems.push(`content/${locale}/pages.json: no page for family ${family.id}`);
-    for (const id of Object.keys(content.families ?? {})) if (!families.has(id)) problems.push(`content/${locale}/pages.json: ${id} is not a registry family`);
+    const home = pages(locale).home ?? {};
+    for (const key of ['title', 'description', 'heading', 'lead', 'effect']) if (!home[key]) problems.push(`content/${locale}/pages.json: no home.${key}`);
+    if (home.effect && !/^[a-z0-9]+(-[a-z0-9]+)*$/u.test(home.effect)) problems.push(`content/${locale}/pages.json: home.effect is not an effect id`);
   }
   return problems;
 }

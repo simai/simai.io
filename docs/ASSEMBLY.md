@@ -21,7 +21,7 @@ The site must be built for its portal path, for example
 - every URL is relative, or absolute under that path;
 - it links nothing outside its path except other portal pages
   (`/ru/...`) and external https sites;
-- it loads Simai Framework from a released pair, never from a branch;
+- it loads SIMAI Framework from a released pair, never from a branch;
 - every page has `<html lang>`, a `<title>`, a description and
   `<link rel="canonical">` with its full address on `https://simai.io/`;
 - its header links back to the portal home until it adopts the shared

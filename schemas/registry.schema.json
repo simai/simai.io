@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://simai.io/schemas/registry/v1.json",
   "title": "simai.io product registry",
-  "description": "Every product family and product the portal presents. Navigation, the home catalogue, the family pages and sitemap.xml are generated from it.",
+  "description": "Every product family and product the portal presents. Navigation, the home sections and sitemap.xml are generated from it.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "version", "default_locale", "locales", "families", "products"],
@@ -34,7 +34,7 @@
         "required": ["id", "path", "status", "title", "summary"],
         "properties": {
           "id": { "$ref": "#/$defs/id" },
-          "path": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/$", "description": "Path under the locale prefix, e.g. framework/ → /ru/framework/." },
+          "path": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/$", "description": "Path under the locale prefix that the family's products live under, e.g. framework/ → /ru/framework/effects/. The path itself sends the reader to the family's section of the home page." },
           "status": { "$ref": "#/$defs/status" },
           "title": { "$ref": "#/$defs/text" },
           "summary": { "$ref": "#/$defs/text" }

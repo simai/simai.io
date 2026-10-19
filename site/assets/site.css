@@ -1,4 +1,4 @@
-/* simai.io portal. Colours are Simai Framework roles, so the whole site
+/* simai.io portal. Colours are SIMAI Framework roles, so the whole site
    follows .theme-light / .theme-dark on <html>. This is the placeholder
    shell; the shared shell component of the Framework replaces the header
    and footer rules (docs/SHELL.md). */
@@ -66,17 +66,49 @@ h3 { font-size: 1.0625rem; line-height: 1.4; font-weight: 700; }
 /* Header */
 .top { border-block-end: 1px solid var(--sf-outline-variant); background: var(--sf-surface-0); }
 .top__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); padding-block: var(--space-3); }
-.brand { display: inline-flex; align-items: center; gap: var(--space-3); color: var(--sf-on-surface); text-decoration: none; font-weight: 700; }
-.brand__mark { inline-size: 1.75rem; block-size: 1.75rem; }
-.brand__sub { display: block; font-size: 0.75rem; font-weight: 500; color: var(--ink-muted); }
+.brand { display: inline-flex; align-items: center; color: var(--sf-on-surface); text-decoration: none; }
+/* The SIMAI logo, inline so its wordmark takes the theme's on-surface. */
+.brand__logo { display: block; block-size: 2rem; inline-size: auto; }
+.top__tools { display: flex; align-items: center; gap: var(--space-2); }
 .top__nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin-inline-start: auto; }
 .top__nav a, .foot__nav a { color: var(--sf-on-surface); text-decoration: none; padding-block: var(--space-2); }
 .top__nav a:hover, .foot__nav a:hover { color: var(--sf-primary); text-decoration: underline; }
-.top__nav a[aria-current="page"] { color: var(--sf-primary); font-weight: 600; }
+.family { scroll-margin-block-start: var(--space-4); }
 @media (max-width: 40rem) {
   .top__nav { margin-inline-start: 0; order: 3; inline-size: 100%; }
-  .top .seg { margin-inline-start: auto; }
+  .top__tools { margin-inline-start: auto; }
 }
+
+/* The language menu: a globe button and its list, shaped like Docara's. */
+.lang { position: relative; }
+.lang > summary { list-style: none; }
+.lang > summary::-webkit-details-marker { display: none; }
+.lang__popup {
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-2));
+  inset-inline-end: 0;
+  z-index: 20;
+  min-inline-size: 10rem;
+  padding: var(--space-1);
+  border: 1px solid var(--sf-outline-variant);
+  border-radius: var(--radius-m);
+  /* surface-container is translucent; lay it over the solid surface. */
+  background: linear-gradient(var(--sf-surface-container), var(--sf-surface-container)), var(--sf-surface-0);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.24);
+}
+.lang__popup ul { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.lang__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-block-size: 2rem;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-s);
+  color: var(--sf-on-surface);
+  text-decoration: none;
+}
+.lang__option:hover { background: var(--sf-surface-container-hover); }
 
 /* Segmented group: theme and language */
 .seg {
@@ -136,21 +168,8 @@ h3 { font-size: 1.0625rem; line-height: 1.4; font-weight: 700; }
 /* Families and products */
 .family { display: grid; gap: var(--space-4); padding-block: var(--space-6); }
 .family + .family { border-block-start: 1px solid var(--sf-outline-variant); }
-.family__head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: var(--space-2) var(--space-4);
-}
-.family__summary { grid-column: 1 / -1; }
-.family__head h2 a { color: inherit; text-decoration: none; }
-.family__head h2 a:hover { color: var(--sf-primary); text-decoration: underline; }
+.family__head { display: grid; gap: var(--space-2); }
 .family__summary { color: var(--ink-muted); max-inline-size: 46rem; }
-.family__more { grid-row: 1; grid-column: 2; }
-@media (max-width: 40rem) {
-  .family__head { grid-template-columns: 1fr; }
-  .family__more { grid-row: auto; grid-column: 1; }
-}
 .family__empty { color: var(--ink-muted); }
 
 .cards {
@@ -194,6 +213,7 @@ h3 { font-size: 1.0625rem; line-height: 1.4; font-weight: 700; }
   line-height: 1.5rem;
   vertical-align: middle;
 }
+.badge--plain { background: transparent; color: var(--ink-muted); box-shadow: inset 0 0 0 1px var(--sf-outline-variant); }
 h1 .badge { margin-inline-start: var(--space-3); }
 
 .button {

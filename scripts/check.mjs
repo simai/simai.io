@@ -59,7 +59,9 @@ try {
     if (!/<html lang="[a-z]{2}"/u.test(html)) problems.push(`${name}: no lang`);
     if (!/<title>[^<]+<\/title>/u.test(html)) problems.push(`${name}: no title`);
     if (!/<link rel="canonical" href="https:\/\/[^"]+">/u.test(html)) problems.push(`${name}: no canonical link`);
-    if (name !== 'index.html' && !/<meta name="description" content="[^"]+">/u.test(html)) problems.push(`${name}: no description`);
+    const redirect = /http-equiv="refresh"/u.test(html);
+    if (!redirect && !/<meta name="description" content="[^"]+">/u.test(html)) problems.push(`${name}: no description`);
+    if (redirect && name !== 'index.html' && !/<meta name="robots" content="noindex">/u.test(html)) problems.push(`${name}: a redirect page without noindex`);
     for (const [, attribute, target] of html.matchAll(/\b(href|src)="([^"]*)"/gu)) {
       const value = target.replaceAll('&amp;', '&');
       if (/^https?:\/\//u.test(value)) {

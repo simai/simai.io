@@ -6,7 +6,7 @@ The portal is assembled, not written in one place:
 
 - **The hub** (this repository) owns:
   - the registry;
-  - the home and family pages;
+  - the home page;
   - the shell contract;
   - the release lock;
   - the build.
@@ -19,7 +19,7 @@ The hub never publishes a product version that the product has not released.
 
 | Kind | Where | Example |
 |---|---|---|
-| Home, family pages | apex, language first | `simai.io/ru/framework/` |
+| Home: one page, a section per family | apex, language first | `simai.io/ru/#framework` |
 | Docs and catalogues | apex, under the family | `simai.io/ru/framework/docs/` |
 | Applications | own subdomain | `play.simai.io` |
 
@@ -28,12 +28,14 @@ The hub never publishes a product version that the product has not released.
 - Applications that run user code or hold state stay on their own origin.
 - `/` is an entry page. It sends readers to the default locale and carries
   the site verification tags.
+- A family's `path` is the prefix of its products' portal paths. Its own
+  address (`/ru/framework/`) sends the reader to the family's section.
 
 ## Registry
 
 `registry/products.json` is the only list of what the portal presents.
-Navigation, the home catalogue, the family pages, `sitemap.xml` and the
-published `registry.json` are generated from it.
+Navigation, the home sections, `sitemap.xml` and the published
+`registry.json` are generated from it.
 
 A product's `placement` says where it lives now:
 
@@ -77,7 +79,7 @@ Until then, products are `external` and the portal links to them.
 
 ## Localization
 
-- Page text: `content/<locale>/pages.json`.
+- Home page text: `content/<locale>/pages.json`.
 - Interface strings: `content/<locale>/strings.json`.
 - A locale goes live when its status in the registry is `live`. From then
   on, the check requires every key and every registry text in that locale.

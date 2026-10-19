@@ -1,10 +1,10 @@
 # simai.io
 
-The portal of SIMAI technologies and products: Simai Framework, Docara and
+The portal of SIMAI technologies and products: SIMAI Framework, Docara and
 the products that follow. This repository is the **hub**. It holds:
 
 - the product registry;
-- the home page and the product family pages;
+- the home page: one page per locale, a section per product family;
 - the shared shell contract;
 - the build that publishes the portal.
 
@@ -18,17 +18,21 @@ cycle and owner.
 | Path | What it holds |
 |---|---|
 | `registry/products.json` | Every product family and product, their status and where each one lives. Validated by `schemas/registry.schema.json`. |
-| `content/<locale>/` | Page text (`pages.json`) and interface strings (`strings.json`) per locale. Russian is live; English is planned. |
-| `site/` | Page templates, the placeholder shell (header and footer) and assets. |
+| `content/<locale>/` | Home page text (`pages.json`) and interface strings (`strings.json`) per locale. Russian and English are live. |
+| `site/` | Page templates, the placeholder shell (header with the SIMAI logo, language menu and theme switch; footer) and assets. |
 | `portal.lock.json` | The product releases assembled under portal paths ([assembly](docs/ASSEMBLY.md)). |
-| `framework.lock.json` | The Simai Framework pair the pages load, from jsDelivr by full commit. |
+| `framework.lock.json` | The SIMAI Framework pair the pages load, and the effects catalogue commit, from jsDelivr by full commit. |
 | `scripts/` | `build.mjs` (the site), `check.mjs` (the gate), `check-hygiene.mjs`, `serve.mjs` (a local look). |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), [shell contract](docs/SHELL.md), [adding a product](docs/ADDING-A-PRODUCT.md), [portal artifacts](docs/ASSEMBLY.md). |
 
 Addresses:
 
-- Reading content lives on language-first paths: `/ru/`, `/ru/framework/`,
-  `/ru/docara/`; English will use `/en/…` with the same slugs.
+- The portal is one page per locale, `/ru/` and `/en/`; the menu jumps to
+  a family's section (`/ru/#framework`). `/ru/framework/` and the other
+  family paths of the first build send the reader to that section.
+- Products assembled into the portal live under their family's path,
+  language first: `/ru/framework/effects/`. A locale without its own
+  artifact links to the default locale's, marked with its language.
 - Interactive applications live on their own subdomains, for example
   `play.simai.io`.
 

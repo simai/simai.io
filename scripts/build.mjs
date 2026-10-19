@@ -13,7 +13,7 @@ import {execFileSync} from 'node:child_process';
 import {copyFileSync, cpSync, mkdirSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {join, resolve} from 'node:path';
 import {ROOT, checkRegistry, effectsBase, frameworkBase, liveLocales, lock, pages, registry, strings} from './lib/registry.mjs';
-import {assemble} from './lib/assemble.mjs';
+import {assemble, portalLock} from './lib/assemble.mjs';
 
 const PRODUCTION = 'https://simai.io/';
 const YANDEX_VERIFICATION = 'f30b3d3c78686437';
@@ -50,27 +50,46 @@ function render(source, values, dictionary) {
 }
 
 const host = (url) => new URL(url).host + (new URL(url).pathname === '/' ? '' : new URL(url).pathname.replace(/\/$/u, ''));
+const live = liveLocales(data);
+const robots = indexed ? '' : '<meta name="robots" content="noindex">\n';
+const logo = readFileSync(join(ROOT, 'site', 'partials', 'logo.svg'), 'utf8');
 
-// The address of a product for a reader on a page whose root prefix is root.
+// Which locales each assembled product has an artifact for. A reader of a
+// locale without one is sent to the default locale's artifact.
+const assembledLocales = new Map();
+for (const artifact of portalLock().artifacts) {
+  const locale = artifact.base_path.split('/')[1];
+  if (!assembledLocales.has(artifact.product)) assembledLocales.set(artifact.product, new Set());
+  assembledLocales.get(artifact.product).add(locale);
+}
+
+// The address of a product for a reader on a page whose root prefix is root,
+// and the locale it is in when that differs from the reader's.
 function productHref(product, locale, root) {
   const {placement} = product;
-  if (placement.mode === 'external' || placement.mode === 'subdomain') return placement.url;
-  if (placement.mode === 'assembled') return root + placement.path.replace('{locale}', locale);
-  return null;
+  if (placement.mode === 'external' || placement.mode === 'subdomain') return {href: placement.url};
+  if (placement.mode === 'assembled') {
+    const locales = assembledLocales.get(product.id) ?? new Set();
+    const target = locales.has(locale) ? locale : data.default_locale;
+    if (!locales.has(target)) throw new Error(`build: ${product.id} is assembled but has no artifact for ${target}`);
+    return {href: root + placement.path.replace('{locale}', target), language: target === locale ? null : target};
+  }
+  return {href: null};
 }
 
 function card(product, locale, root, dictionary) {
-  const href = productHref(product, locale, root);
+  const {href, language} = productHref(product, locale, root);
   const title = escape(product.title[locale]);
   const status = dictionary[`status.${product.status}`];
   const meta = [`<span>${escape(dictionary[`kind.${product.kind}`])}</span>`];
   if (status) meta.push(`<span class="badge">${escape(status)}</span>`);
+  if (language) meta.push(`<span class="badge badge--plain" lang="${locale}">${escape(dictionary['product.in_language'])}</span>`);
   const external = href && /^https:/u.test(href);
   const lines = [
     `      <li class="card${href ? '' : ' card--soon'}" data-product="${product.id}">`,
     `        <p class="card__meta">${meta.join('')}</p>`,
     href
-      ? `        <h3><a class="card__link" href="${escape(href)}">${title}</a></h3>`
+      ? `        <h3><a class="card__link" href="${escape(href)}"${language ? ` hreflang="${language}"` : ''}>${title}</a></h3>`
       : `        <h3>${title}</h3>`,
     `        <p class="card__summary">${escape(product.summary[locale])}</p>`,
   ];
@@ -86,28 +105,42 @@ function cards(family, locale, root, dictionary) {
   return `    <ul class="cards">\n${products.map((product) => card(product, locale, root, dictionary)).join('\n')}\n    </ul>`;
 }
 
-// Navigation: home plus every family. root is the prefix to the site root,
-// current the family id of the page (or "home").
-function nav(locale, root, current, dictionary) {
-  const items = [[`${root}${locale}/`, dictionary['nav.home'], 'home'], ...data.families.map((family) => [`${root}${locale}/${family.path}`, family.title[locale], family.id])];
-  return items.map(([href, label, id]) => `      <a href="${escape(href)}"${id === current ? ' aria-current="page"' : ''}>${escape(label)}</a>`).join('\n');
+// The portal is one page per locale: the menu jumps to a family's section.
+// page is the prefix from the current page to that locale's home ("" on it).
+function nav(locale, page) {
+  return data.families.map((family) => `      <a href="${escape(`${page}#${family.id}`)}">${escape(family.title[locale])}</a>`).join('\n');
 }
 
-function langs(locale, root, path, dictionary) {
-  const live = data.locales.filter((item) => item.status === 'live');
-  if (live.length < 2) return '';
-  const links = live.map((item) => `      <a class="seg__btn" href="${escape(`${root}${item.id}/${path}`)}" hreflang="${item.id}" lang="${item.id}"${item.id === locale ? ' aria-current="true"' : ''}>${escape(item.label)}</a>`);
-  return `    <nav class="seg" aria-label="${escape(dictionary['lang.label'])}">\n${links.join('\n')}\n    </nav>`;
+// The language menu, shaped like Docara's: a globe button and the list.
+function langs(locale, root, dictionary) {
+  const locales = data.locales.filter((item) => item.status === 'live');
+  if (locales.length < 2) return '';
+  const check = '<sf-icon icon="check" aria-hidden="true"></sf-icon>';
+  const options = locales.map((item) => `            <li><a class="lang__option" href="${escape(`${root}${item.id}/`)}" lang="${item.id}" hreflang="${item.id}"${item.id === locale ? ' aria-current="page"' : ''}><span>${escape(item.label)}</span>${item.id === locale ? check : ''}</a></li>`);
+  return [
+    '      <details class="lang" data-lang-menu>',
+    `        <summary class="lang__trigger sf-icon-button sf-icon-button--icon sf-icon-button--on-surface sf-icon-button--link sf-icon-button--size-1 radius-default cursor-pointer" aria-label="${escape(dictionary['lang.label'])}" aria-expanded="false"><sf-icon icon="language" aria-hidden="true"></sf-icon></summary>`,
+    `        <nav class="lang__popup" aria-label="${escape(dictionary['lang.label'])}">`,
+    '          <ul>',
+    ...options,
+    '          </ul>',
+    '        </nav>',
+    '      </details>',
+  ].join('\n');
 }
 
-const common = (locale, root, home, current, path, dictionary, canonicalPath) => ({
+const alternates = (path) => [...live.map((locale) => `<link rel="alternate" hreflang="${locale}" href="${escape(`${siteUrl}${locale}/${path}`)}">`), `<link rel="alternate" hreflang="x-default" href="${escape(`${siteUrl}${data.default_locale}/${path}`)}">`].join('\n');
+
+const common = (locale, root, home, page, dictionary, canonicalPath) => ({
   LANG: locale,
   ROOT: root,
   HOME: home,
-  NAV: nav(locale, root, current, dictionary),
-  LANGS: langs(locale, root, path, dictionary),
-  ROBOTS: indexed ? '' : '<meta name="robots" content="noindex">\n',
+  LOGO: logo.trim(),
+  NAV: nav(locale, page),
+  LANGS: langs(locale, root, dictionary),
+  ROBOTS: robots,
   CANONICAL: escape(siteUrl + canonicalPath),
+  ALTERNATES: alternates(''),
   FRAMEWORK_BASE: frameworkBase(framework),
   EFFECTS_BASE: effectsBase(framework),
   PAIR: framework.pair,
@@ -122,22 +155,21 @@ const write = (path, html) => {
   writeFileSync(join(out, path, 'index.html'), html);
 };
 
-for (const locale of liveLocales(data)) {
+for (const locale of live) {
   const dictionary = strings(locale);
   const content = pages(locale);
 
   const families = data.families.map((family) => [
-    `  <section class="wrap family" aria-labelledby="family-${family.id}" data-family="${family.id}">`,
+    `  <section class="wrap family" id="${family.id}" aria-labelledby="family-${family.id}" data-family="${family.id}">`,
     '    <div class="family__head">',
-    `      <h2 id="family-${family.id}"><a href="${escape(family.path)}">${escape(family.title[locale])}</a>${family.status === 'stable' ? '' : ` <span class="badge">${escape(dictionary[`status.${family.status}`])}</span>`}</h2>`,
+    `      <h2 id="family-${family.id}">${escape(family.title[locale])}${family.status === 'stable' ? '' : ` <span class="badge">${escape(dictionary[`status.${family.status}`])}</span>`}</h2>`,
     `      <p class="family__summary">${escape(family.summary[locale])}</p>`,
-    `      <a class="family__more" href="${escape(family.path)}">${escape(dictionary['family.more'])}</a>`,
     '    </div>',
     cards(family, locale, '../', dictionary),
     '  </section>',
   ].join('\n')).join('\n');
   write(locale, render(template('home'), {
-    ...common(locale, '../', './', 'home', '', dictionary, `${locale}/`),
+    ...common(locale, '../', './', '', dictionary, `${locale}/`),
     TITLE: escape(content.home.title),
     DESCRIPTION: escape(content.home.description),
     HEADING: escape(content.home.heading),
@@ -147,19 +179,15 @@ for (const locale of liveLocales(data)) {
   }, dictionary));
   sitemap.push(`${locale}/`);
 
+  // The family pages of the first portal build moved to sections of the
+  // home page; their addresses stay and send the reader there.
   for (const family of data.families) {
-    const page = content.families[family.id];
-    write(join(locale, family.path), render(template('family'), {
-      ...common(locale, '../../', '../', family.id, family.path, dictionary, `${locale}/${family.path}`),
-      TITLE: escape(`${page.title} — SIMAI`),
-      DESCRIPTION: escape(page.description),
-      FAMILY_ID: family.id,
-      HEADING: escape(page.title),
-      STATUS: family.status === 'stable' ? '' : ` <span class="badge">${escape(dictionary[`status.${family.status}`])}</span>`,
-      LEAD: escape(page.lead),
-      PRODUCTS: cards(family, locale, '../../', dictionary),
+    write(join(locale, family.path), render(template('redirect'), {
+      LANG: locale,
+      TITLE: escape(`${family.title[locale]} — SIMAI`),
+      TARGET: `../#${family.id}`,
+      CANONICAL: escape(`${siteUrl}${locale}/`),
     }, dictionary));
-    sitemap.push(`${locale}/${family.path}`);
   }
 }
 
@@ -169,16 +197,16 @@ const entryStrings = strings(entryLocale);
 writeFileSync(join(out, 'index.html'), render(template('entry'), {
   LANG: entryLocale,
   YANDEX_VERIFICATION,
-  ROBOTS: indexed ? '' : '<meta name="robots" content="noindex">\n',
+  ROBOTS: robots,
   TARGET: `${entryLocale}/`,
   TARGET_LABEL: escape(`${siteUrl}${entryLocale}/`),
   CANONICAL: escape(`${siteUrl}${entryLocale}/`),
-  ALTERNATES: liveLocales(data).map((locale) => `<link rel="alternate" hreflang="${locale}" href="${escape(`${siteUrl}${locale}/`)}">`).join('\n'),
+  ALTERNATES: alternates(''),
 }, entryStrings));
 
 // 404.html is served at any depth, so its links take the base path.
 writeFileSync(join(out, '404.html'), render(template('notfound'), {
-  ...common(entryLocale, basePath, `${basePath}${entryLocale}/`, '', '', entryStrings, `${entryLocale}/`),
+  ...common(entryLocale, basePath, `${basePath}${entryLocale}/`, `${basePath}${entryLocale}/`, entryStrings, `${entryLocale}/`),
   TITLE: escape(`${entryStrings['notfound.title']} — SIMAI`),
   DESCRIPTION: escape(entryStrings['notfound.lead']),
 }, entryStrings));
