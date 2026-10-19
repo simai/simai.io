@@ -226,8 +226,7 @@
       "repository": "simai/docara",
       "placement": {
         "mode": "external",
-        "url": "https://simai.github.io/docara/",
-        "planned": "{locale}/docara/docs/"
+        "url": "https://docara.simai.io/"
       }
     },
     {
