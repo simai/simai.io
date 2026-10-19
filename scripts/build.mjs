@@ -126,7 +126,7 @@ function langs(locale, root, dictionary) {
   const options = locales.map((item) => `            <li><a class="lang__option" href="${escape(`${root}${item.id}/`)}" lang="${item.id}" hreflang="${item.id}"${item.id === locale ? ' aria-current="page"' : ''}><span>${escape(item.label)}</span>${item.id === locale ? check : ''}</a></li>`);
   return [
     '      <details class="lang" data-lang-menu>',
-    `        <summary class="lang__trigger sf-icon-button sf-icon-button--icon sf-icon-button--on-surface sf-icon-button--link sf-icon-button--size-1 radius-default cursor-pointer" aria-label="${escape(dictionary['lang.label'])}" aria-expanded="false"><sf-icon icon="language" aria-hidden="true"></sf-icon></summary>`,
+    `        <summary class="lang__trigger sf-icon-button sf-icon-button--icon sf-icon-button--on-surface sf-icon-button--link sf-icon-button--size-1/2 radius-default cursor-pointer" aria-label="${escape(dictionary['lang.label'])}" aria-expanded="false"><sf-icon icon="language" aria-hidden="true"></sf-icon></summary>`,
     `        <nav class="lang__popup" aria-label="${escape(dictionary['lang.label'])}">`,
     '          <ul>',
     ...options,
