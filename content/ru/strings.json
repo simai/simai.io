@@ -13,6 +13,7 @@
   "kind.app": "Приложение",
   "kind.repository": "Репозиторий",
   "kind.standard": "Стандарт",
+  "kind.tool": "Инструмент",
   "status.stable": "",
   "status.beta": "Бета",
   "status.soon": "Скоро",

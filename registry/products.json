@@ -54,6 +54,19 @@
         "ru": "Открытые стандарты и форматы SIMAI: как проекты описывают знания для ИИ, как объекты следуют правилам, как переносятся данные и как устроены компоненты фреймворка.",
         "en": "Open SIMAI standards and formats: how projects describe their knowledge for AI, how objects follow rules, how data moves between systems and how framework components are built."
       }
+    },
+    {
+      "id": "tools",
+      "path": "tools/",
+      "status": "stable",
+      "title": {
+        "ru": "Инструменты",
+        "en": "Tools"
+      },
+      "summary": {
+        "ru": "Инструменты для серверов и проектов SIMAI: подготовка окружения, сайты, обслуживание.",
+        "en": "Tools for SIMAI servers and projects: environment setup, sites and operations."
+      }
     }
   ],
   "products": [
@@ -348,22 +361,23 @@
       }
     },
     {
-      "id": "standard-tz-template",
-      "family": "standards",
-      "kind": "standard",
+      "id": "tool-simai-env",
+      "family": "tools",
+      "kind": "tool",
       "status": "stable",
+      "version": "1.14.0",
       "title": {
-        "ru": "Шаблон ТЗ для ИИ",
-        "en": "Specification template for AI"
+        "ru": "simai-env",
+        "en": "simai-env"
       },
       "summary": {
-        "ru": "Как подготовить техническое задание в связке GPT и Codex: интервью, структура и самодостаточное задание для кода.",
-        "en": "How to write a technical specification with GPT and Codex: the interview, the structure and a self-contained task for code."
+        "ru": "Настройка сервера Ubuntu для PHP-проектов в два шага: nginx, PHP, MySQL, Node, сертификаты и меню управления сайтами.",
+        "en": "Two-step Ubuntu server setup for PHP projects: nginx, PHP, MySQL, Node, certificates and a menu to manage sites."
       },
-      "repository": "zabarov/codex-tz-template",
+      "repository": "simai/simai-env",
       "placement": {
         "mode": "external",
-        "url": "https://github.com/zabarov/codex-tz-template"
+        "url": "https://simai.github.io/simai-env/"
       }
     }
   ]
