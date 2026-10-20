@@ -206,7 +206,6 @@ writeFileSync(join(out, 'index.html'), render(template('entry'), {
   YANDEX_VERIFICATION,
   ROBOTS: robots,
   TARGET: `${entryLocale}/`,
-  TARGET_LABEL: escape(`${siteUrl}${entryLocale}/`),
   CANONICAL: escape(`${siteUrl}${entryLocale}/`),
   ALTERNATES: alternates(''),
 }, entryStrings));

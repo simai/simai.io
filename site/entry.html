@@ -2,14 +2,14 @@
 <html lang="{{LANG}}">
 <head>
 <meta charset="utf-8">
+<script>location.replace('{{TARGET}}' + location.search + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="yandex-verification" content="{{YANDEX_VERIFICATION}}">
 {{ROBOTS}}<title>{{S:entry.title}}</title>
 <meta http-equiv="refresh" content="0; url={{TARGET}}">
 <link rel="canonical" href="{{CANONICAL}}">
 {{ALTERNATES}}
+<style>html { background: #111316; } @media (prefers-color-scheme: light) { html { background: #fff; } }</style>
 </head>
-<body>
-<p>{{S:entry.lead}} <a href="{{TARGET}}">{{TARGET_LABEL}}</a></p>
-</body>
+<body></body>
 </html>
