@@ -238,4 +238,8 @@ writeFileSync(join(out, 'sitemap.xml'), [
 ].join('\n'));
 writeFileSync(join(out, 'robots.txt'), indexed ? `User-agent: *\nAllow: /\nSitemap: ${siteUrl}sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');
 writeFileSync(join(out, '.nojekyll'), '');
+// For the simai-env server (docs/SERVER.md): / is a server-side 302 there,
+// so the release is checked on the default locale's home.
+mkdirSync(join(out, '.simai'), {recursive: true});
+writeFileSync(join(out, '.simai', 'app.json'), `${JSON.stringify({schema: 'simai-app/1', profile: 'static', health: {path: `/${data.default_locale}/`}}, null, 2)}\n`);
 console.log(`build: ${sitemap.length} pages for ${siteUrl}${indexed ? '' : ' (noindex)'}, build ${commit.slice(0, 12)}, Framework ${framework.pair} -> ${out}`);

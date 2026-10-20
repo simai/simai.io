@@ -1,0 +1,59 @@
+name: Deploy to the simai server
+
+# Builds the portal for https://simai.io/ and deploys it to the simai-env
+# server (docs/SERVER.md) after Quality passes on main, or on a manual run.
+# It does nothing until the repository variable SIMAI_SERVER_DEPLOY is "true"
+# and the environment simai-server holds SIMAI_DEPLOY_KEY (a key that the
+# server's deploy gate lets deploy simai.io only) and SIMAI_DEPLOY_KNOWN_HOSTS.
+on:
+  workflow_run:
+    workflows: [Quality]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: simai-server
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      vars.SIMAI_SERVER_DEPLOY == 'true' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'))
+    runs-on: ubuntu-latest
+    environment: simai-server
+    env:
+      PORTAL_COMMIT: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ env.PORTAL_COMMIT }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "20.19.5"
+      - run: npm ci --no-audit --no-fund
+      - name: Build for https://simai.io/
+        run: SITE_URL=https://simai.io/ node scripts/build.mjs
+      - name: Deploy the artifact
+        env:
+          DEPLOY_KEY: ${{ secrets.SIMAI_DEPLOY_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.SIMAI_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          install -m 600 /dev/null "$RUNNER_TEMP/key" && printf '%s\n' "$DEPLOY_KEY" > "$RUNNER_TEMP/key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$RUNNER_TEMP/known_hosts"
+          tar -C dist -czf "$RUNNER_TEMP/site.tgz" .
+          sum=$(sha256sum "$RUNNER_TEMP/site.tgz" | cut -d' ' -f1)
+          echo "artifact sha256 $sum"
+          ssh -i "$RUNNER_TEMP/key" -o UserKnownHostsFile="$RUNNER_TEMP/known_hosts" -o StrictHostKeyChecking=yes \
+            simai-deploy@201.51.24.222 "deploy-artifact $sum" < "$RUNNER_TEMP/site.tgz"
+      - name: Check the deployed release on the server
+        run: |
+          set -euo pipefail
+          curl -fsS --resolve simai.io:443:201.51.24.222 https://simai.io/ru/ -o /dev/null || \
+            curl -fsS --resolve simai.io:80:201.51.24.222 http://simai.io/ru/ -o /dev/null

@@ -23,7 +23,7 @@ cycle and owner.
 | `portal.lock.json` | The product releases assembled under portal paths ([assembly](docs/ASSEMBLY.md)). |
 | `framework.lock.json` | The SIMAI Framework pair the pages load, and the effects catalogue commit, from jsDelivr by full commit. |
 | `scripts/` | `build.mjs` (the site), `check.mjs` (the gate), `check-hygiene.mjs`, `serve.mjs` (a local look). |
-| `docs/` | [Architecture](docs/ARCHITECTURE.md), [shell contract](docs/SHELL.md), [adding a product](docs/ADDING-A-PRODUCT.md), [portal artifacts](docs/ASSEMBLY.md). |
+| `docs/` | [Architecture](docs/ARCHITECTURE.md), [shell contract](docs/SHELL.md), [adding a product](docs/ADDING-A-PRODUCT.md), [portal artifacts](docs/ASSEMBLY.md), [the simai server](docs/SERVER.md). |
 
 Addresses:
 
