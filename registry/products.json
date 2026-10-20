@@ -375,7 +375,7 @@
       "repository": "simai/sitepack",
       "placement": {
         "mode": "external",
-        "url": "https://simai.github.io/sitepack/"
+        "url": "https://sitepack.simai.io/"
       }
     },
     {
@@ -414,7 +414,7 @@
       "repository": "simai/simai-env",
       "placement": {
         "mode": "external",
-        "url": "https://simai.github.io/simai-env/"
+        "url": "https://env.simai.io/"
       }
     }
   ]
