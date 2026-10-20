@@ -169,7 +169,7 @@
       "id": "framework-themes",
       "family": "framework",
       "kind": "app",
-      "status": "soon",
+      "status": "beta",
       "title": {
         "ru": "Настройка тем",
         "en": "Theme editor"
@@ -180,8 +180,8 @@
       },
       "repository": null,
       "placement": {
-        "mode": "none",
-        "planned": "https://themes.simai.io/"
+        "mode": "subdomain",
+        "url": "https://themes.simai.io/"
       }
     },
     {
@@ -402,7 +402,7 @@
       "family": "tools",
       "kind": "tool",
       "status": "stable",
-      "version": "1.16.2",
+      "version": "1.17.2",
       "title": {
         "ru": "simai-env",
         "en": "simai-env"
