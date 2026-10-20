@@ -11,6 +11,7 @@
   "kind.repository": "Repository",
   "kind.standard": "Standard",
   "kind.tool": "Tool",
+  "kind.service": "Service",
   "status.stable": "",
   "status.beta": "Beta",
   "status.soon": "Soon",

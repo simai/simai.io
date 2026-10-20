@@ -109,6 +109,25 @@
       }
     },
     {
+      "id": "framework-icons",
+      "family": "framework",
+      "kind": "service",
+      "status": "stable",
+      "title": {
+        "ru": "Иконки",
+        "en": "Icons"
+      },
+      "summary": {
+        "ru": "Шрифты Material Symbols, нарезанные ровно под иконки страницы: килобайты вместо мегабайт.",
+        "en": "Material Symbols fonts cut down to the icons a page uses: kilobytes instead of megabytes."
+      },
+      "repository": "simai/ui-icons",
+      "placement": {
+        "mode": "external",
+        "url": "https://icons.simai.io/"
+      }
+    },
+    {
       "id": "framework-playground",
       "family": "framework",
       "kind": "app",

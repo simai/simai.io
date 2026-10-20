@@ -11,6 +11,7 @@
   "kind.repository": "Репозиторий",
   "kind.standard": "Стандарт",
   "kind.tool": "Инструмент",
+  "kind.service": "Сервис",
   "status.stable": "",
   "status.beta": "Бета",
   "status.soon": "Скоро",

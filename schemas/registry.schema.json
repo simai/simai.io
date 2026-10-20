@@ -117,7 +117,8 @@
               "app",
               "repository",
               "standard",
-              "tool"
+              "tool",
+              "service"
             ]
           },
           "status": {
