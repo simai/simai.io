@@ -188,7 +188,7 @@
       "id": "framework-admin",
       "family": "framework",
       "kind": "app",
-      "status": "soon",
+      "status": "beta",
       "title": {
         "ru": "Админка",
         "en": "Admin"
@@ -199,8 +199,8 @@
       },
       "repository": null,
       "placement": {
-        "mode": "none",
-        "planned": "https://admin.simai.io/"
+        "mode": "subdomain",
+        "url": "https://admin.simai.io/"
       }
     },
     {
